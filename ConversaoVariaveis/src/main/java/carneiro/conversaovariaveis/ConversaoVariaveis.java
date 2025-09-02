@@ -21,5 +21,6 @@ public class ConversaoVariaveis {
         flutuante = inteiro;
         
         System.out.println("Inteiro: "+inteiro+"\nDouble: "+flutuante);
+        kb.close();
     }
 }
