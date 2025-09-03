@@ -21,7 +21,7 @@ public class ParOuImpar {
         nPlayer = kb.nextInt();
 
         if ((opcao == 'P' && (nPlayer + nPc) % 2 == 0) || (opcao == 'I' && (nPlayer + nPc) % 2 != 0)) {
-            System.out.println("Voce ganhou!\n numero computador: " + nPc + " (" + (nPlayer + nPc) + ")");
+            System.out.println("Voce ganhou!\n numero computador: " + nPc + " (" + (nPlayer + nPc) + ")");  
         } else {
             System.out.println("Voce perdeu!\n numero computador: " + nPc + " (" + (nPlayer + nPc) + ")");
         }
