@@ -8,28 +8,28 @@
 
 package viapas.gabaritodesafio2;
 
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class GabaritoDesafio2 {
 
     public static void main(String[] args) {
         
-        final int TAMANHO = 12;
+        final int TAMANHO = 100;
         
         Scanner entrada   = new Scanner( System.in );
-        //Random  aleatorio = new Random();
+        Random  aleatorio = new Random();
         
         int codigo , quantidade;
         
         int[] posicoes = new int[ TAMANHO ];
-        int[] estoque  = { 45, 72, 18, 99, 45, 27, 45, 62, 18, 69, 77, 91 };
+        //int[] estoque  = { 45, 72, 18, 99, 45, 27, 45, 62, 18, 69, 77, 91 };
         
-        //int[] estoque = new int[ TAMANHO ];
+        int[] estoque = new int[ TAMANHO ];
         
-        //for( int i = 0 ; i < TAMANHO ; i++){
-        //    estoque[ i ] = aleatorio.nextInt( 91 ) + 10;
-        //}
+        for( int i = 0 ; i < TAMANHO ; i++){
+            estoque[ i ] = aleatorio.nextInt( 91 ) + 10;
+        }
         
         while( true ){
             quantidade = 0;
