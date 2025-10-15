@@ -1,24 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 
 package carneiro.exemplomodolarizacao1;
 
-/**
- *
- * @author Samsung
- */
+import java.util.Scanner;
+
 public class ExemploModolarizacao1 {
-    
-    public static void entrada() {
-        System.out.println("\n\neu sou a funcao entrada");
+
+    public static void mostrarMensagem(String nome, int idade, int[] v) {
+        System.out.println("\n\nOlá " + nome + ", você tem " + idade + " anos.");
+
+        for (int i = 0; i < v.length; i++) {
+            System.out.println("v[" + i + "] = " + v[i]);
+        }
+    }
+
+    public static int leituraIdade() {
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Digite sua idade: ");
+        int idade = kb.nextInt();
+        return idade;
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        String nome = "João";
+        int[] v = {1, 2, 3, 4, 5};
         
-        entrada();
-        processamento();
-        saida();
+        int idade = leituraIdade();
+        
+
+        System.out.println("Idade lida: " + idade);
+        mostrarMensagem(nome, idade, v);
     }
 }
