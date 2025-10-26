@@ -21,6 +21,7 @@ public class ExemploOOProdutosa {
                 System.out.println("4 - Mostrar produto");
                 System.out.println("5 - Repor estoque");
                 System.out.println("6 - Ver disponibilidade de estoque");
+                System.out.println("7 - Vender produto");
                 System.out.println("0 - Sair");
                 System.out.print("\nOpção: ");
 
@@ -92,7 +93,19 @@ public class ExemploOOProdutosa {
                             System.out.println("\n*** Erro : Crie um produto primeiro!\n");
                         }
                     }
-                    
+
+                    case 7 -> {
+                        if (prod != null) {
+                            System.out.print("\nQuantidade a vender: ");
+                            int qtd = entrada.nextInt();
+                            entrada.nextLine();
+
+                            prod.venderProduto(qtd);
+                        } else {
+                            System.out.println("\n*** Erro : Crie um produto primeiro!\n");
+                        }
+                    }
+
                     case 0 -> System.out.println("\nEncerrando o programa...\n");
                     
                     default -> System.out.println("\nOpção inválida!\n");

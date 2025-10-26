@@ -1,7 +1,7 @@
 package com.mycompany.exemploooprodutosa;
 
 public class Produto {
-   String nome;
+    String nome;
     double preco;
     int    estoque;
 
@@ -38,6 +38,15 @@ public class Produto {
             System.out.println("\nProduto disponível em estoque: " + this.estoque + " unidades.");
         } else {
             System.out.println("\nProduto indisponível no momento.");
+        }
+    }
+    // Novo método: vender produto
+    public void venderProduto( int qtd ) {
+        if (qtd <= this.estoque) {
+            this.estoque -= qtd;
+            System.out.println("\nVenda realizada com sucesso! Quantidade vendida: " + qtd);
+        } else {
+            System.out.println("\nEstoque insuficiente para realizar a venda. Estoque atual: " + this.estoque);
         }
     }    
 }
