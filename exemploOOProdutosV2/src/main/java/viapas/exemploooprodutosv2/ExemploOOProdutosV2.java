@@ -9,16 +9,20 @@ public class ExemploOOProdutosV2 {
         
         Scanner entrada = new Scanner(System.in);
         
+        final int TAMANHO = 5;
+        
+        Produto[] cadastro = new Produto[TAMANHO];
+        
         Produto prod = null;
         
-        int opcao;
+        int opcao, indice;
 
         do {
             System.out.println("\n=== MENU ===");
-            System.out.println("1 - Criar produto (vazio)");
-            System.out.println("2 - Criar produto com dados");
+            //System.out.println("1 - Criar produto (vazio)");
+            System.out.println("2 - Adicionar produto");
             System.out.println("3 - Aumentar preço");
-            System.out.println("4 - Mostrar produto");
+            System.out.println("4 - Mostrar produtos");
             System.out.println("5 - Repor estoque");
             System.out.println("6 - Retirar do estoque");
             System.out.println("7 - Ver disponibilidade de estoque");
@@ -29,16 +33,40 @@ public class ExemploOOProdutosV2 {
 
             try {
                 switch (opcao) {
-                    case 1 -> {
+                    /*case 1 -> {
                         prod = new Produto();
                         System.out.println("\nProduto criado com construtor padrão.\n");
-                    }
+                    }*/
                     
                     case 2 -> {
+                        //adicionar um novo produto no vetor cadastro
+
+                        for (indice = 0; indice < TAMANHO; indice++){
+                            if (cadastro[indice] == null) break;
+                        }
+                        if(indice == TAMANHO){
+                            System.out.println("\nVetor Cheio. nao pode incluir\n");
+                            continue;
+                        }
+                        
+                        System.out.println("\nO produto ssera incluindo no indice: "+indice);
+                        
                         System.out.print("\nCódigo   : ");
                         int codigo = entrada.nextInt();
                         entrada.nextLine(); // limpa buffer
                         //int codigo = lerIntPositivo( entrada );
+                        int flag = 0;
+                        //verificar se o codigo não existe no vetor
+                        for (int i = 0; i < TAMANHO; i++){
+                            if(cadastro[i] != null && cadastro[i].getCodigo() == codigo){                           
+                                flag = 1;
+                                break;
+                            }
+                        }
+                        if (flag == 1) {
+                            System.out.println("\nCodigo já cadastrado.");
+                            continue;
+                        }
 
                         System.out.print("Nome     : ");
                         String nome = entrada.nextLine();
@@ -52,6 +80,9 @@ public class ExemploOOProdutosV2 {
                         //int estoque = lerIntNaoNegativo( entrada );
 
                         prod = new Produto( codigo , nome , preco , estoque );
+                        
+                        cadastro[indice] = prod;
+                        
                         System.out.println("\nProduto criado com sucesso!\n");
                     }
                     
@@ -65,8 +96,14 @@ public class ExemploOOProdutosV2 {
                     }
                     
                     case 4 -> {
-                        if ( existe( prod ) ) {
+                        /*if ( existe( prod ) ) {
                             System.out.println( prod.mostraDados() );
+                        }*/
+                        
+                        for (int i = 0; i< TAMANHO; i++){
+                            if (cadastro[i] != null){
+                                System.out.println(cadastro[i].mostraDados());
+                            }
                         }
                     }
                     
@@ -111,6 +148,13 @@ public class ExemploOOProdutosV2 {
     }
 
     // ==================== FUNÇÕES AUXILIARES ====================
+    
+    /*private static int buscaIndiceLivre(produto[],int tamanho ) {
+        // percorrer o vetor para achar o primeiro indice livre
+        for(int i = 0; i < tamanho; i++) {
+            if ()
+        }
+    }*/
 
     private static boolean existe( Produto p ) {
         if ( p == null ) {

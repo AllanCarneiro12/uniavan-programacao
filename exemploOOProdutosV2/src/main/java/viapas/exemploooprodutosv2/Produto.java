@@ -11,12 +11,12 @@ public class Produto {
     private int    estoque;
 
     // Construtor 1 - padrão
-    public Produto() {
+    /*public Produto() {
         this.codigo  = 0;
         this.nome    = "Sem nome";
         this.preco   = 0.1;
         this.estoque = 0;
-    }
+    }*/
 
     // Construtor 2 - com parâmetros
     // usaremos chamada a outros metodos para poder fazer a consitencia dos dados
