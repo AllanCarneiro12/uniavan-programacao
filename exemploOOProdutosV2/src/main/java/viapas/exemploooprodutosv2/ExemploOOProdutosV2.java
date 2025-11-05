@@ -20,7 +20,8 @@ public class ExemploOOProdutosV2 {
         do {
             System.out.println("\n=== MENU ===");
             //System.out.println("1 - Criar produto (vazio)");
-            System.out.println("2 - Adicionar produto");
+            System.out.println("1 - Adicionar produto");
+            System.out.println("2 - Excluir produto");
             System.out.println("3 - Aumentar preço");
             System.out.println("4 - Mostrar produtos");
             System.out.println("5 - Repor estoque");
@@ -38,7 +39,7 @@ public class ExemploOOProdutosV2 {
                         System.out.println("\nProduto criado com construtor padrão.\n");
                     }*/
                     
-                    case 2 -> {
+                    case 1 -> {
                         //adicionar um novo produto no vetor cadastro
 
                         for (indice = 0; indice < TAMANHO; indice++){
@@ -55,19 +56,12 @@ public class ExemploOOProdutosV2 {
                         int codigo = entrada.nextInt();
                         entrada.nextLine(); // limpa buffer
                         //int codigo = lerIntPositivo( entrada );
-                        int flag = 0;
-                        //verificar se o codigo não existe no vetor
-                        for (int i = 0; i < TAMANHO; i++){
-                            if(cadastro[i] != null && cadastro[i].getCodigo() == codigo){                           
-                                flag = 1;
-                                break;
-                            }
-                        }
-                        if (flag == 1) {
-                            System.out.println("\nCodigo já cadastrado.");
+                        
+                        if (buscarCodigo(cadastro, codigo , TAMANHO) != -1){
+                            System.out.println("Codigo já existe");
                             continue;
                         }
-
+                    
                         System.out.print("Nome     : ");
                         String nome = entrada.nextLine();
 
@@ -86,13 +80,43 @@ public class ExemploOOProdutosV2 {
                         System.out.println("\nProduto criado com sucesso!\n");
                     }
                     
-                    case 3 -> {
-                        if ( existe( prod ) ) {
-                            System.out.print("\nValor a aumentar : ");
-                            double valor = lerDoublePositivo(entrada);
-                            prod.aumentarPreco( valor );
-                            System.out.println("\nPreço atualizado!\n");
+                    case 2 -> {
+                        System.out.println("Excluir Produto");
+                        System.out.print("\nCódigo   : ");
+                        int codigo = entrada.nextInt();
+                        entrada.nextLine(); // limpa buffer
+                        
+                        indice = buscarCodigo (cadastro, codigo, TAMANHO);
+                        
+                        if(indice == -1){
+                            System.out.println("codigo não encontrado");
+                            continue;
                         }
+                        
+                        cadastro[indice] = null;
+                        
+                        System.out.println("Produto excluido");
+                        
+                    }
+                    
+                    case 3 -> {
+                        System.out.println("Aumento de preço");
+                        System.out.print("\nCódigo   : ");
+                        int codigo = entrada.nextInt();
+                        entrada.nextLine(); // limpa buffer
+                        
+                        indice = buscarCodigo (cadastro, codigo, TAMANHO);
+                        
+                        if(indice == -1){
+                            System.out.println("codigo não encontrado");
+                            continue;
+                        }
+                        
+                        System.out.print("\nValor a aumentar : ");
+                        double valor = lerDoublePositivo(entrada);
+                        
+                        cadastro[indice].aumentarPreco(valor);
+                                             
                     }
                     
                     case 4 -> {
@@ -108,27 +132,73 @@ public class ExemploOOProdutosV2 {
                     }
                     
                     case 5 -> {
-                        if ( existe( prod ) ) {
+                        System.out.println("repor estoque");
+                        System.out.print("\nCódigo   : ");
+                        int codigo = entrada.nextInt();
+                        entrada.nextLine(); // limpa buffer
+                        
+                        indice = buscarCodigo (cadastro, codigo, TAMANHO);
+                        
+                        if(indice == -1){
+                            System.out.println("codigo não encontrado");
+                            continue;
+                        }
+                        
+                        System.out.print("\nQuantidade da reposição: ");
+                        int valor = lerIntPositivo(entrada);
+                        
+                        cadastro[indice].reporEstoque(valor);
+                        
+                        /*if ( existe( prod ) ) {
                             System.out.print("\nQuantidade a repor : ");
                             int qtd = lerIntPositivo( entrada );
                             prod.reporEstoque( qtd );
                             System.out.println("\nEstoque atualizado!\n");
-                        }
+                        }*/
                     }
                     
                     case 6 -> {
-                        if ( existe( prod ) ) {
+                        System.out.println("repor estoque");
+                        System.out.print("\nCódigo   : ");
+                        int codigo = entrada.nextInt();
+                        entrada.nextLine(); // limpa buffer
+                        
+                        indice = buscarCodigo (cadastro, codigo, TAMANHO);
+                        
+                        if(indice == -1){
+                            System.out.println("codigo não encontrado");
+                            continue;
+                        }
+                        
+                        System.out.print("\nQuantidade da reposição: ");
+                        int valor = lerIntPositivo(entrada);
+                        
+                        cadastro[indice].retirarEstoque(valor);
+                        
+                        /*if ( existe( prod ) ) {
                             System.out.print("\nQuantidade a retirar : ");
                             int qtd = lerIntPositivo( entrada );
                             prod.retirarEstoque( qtd );
                             System.out.println("\nEstoque atualizado!\n");
-                        }
+                        }*/
                     }
                     
                     case 7 -> {
-                        if ( existe( prod )) {
-                            System.out.println("\n" + prod.getStatusEstoque());
+                        System.out.println("verificar estoque");
+                        System.out.print("\nCódigo   : ");
+                        int codigo = entrada.nextInt();
+                        entrada.nextLine(); // limpa buffer
+                        
+                        indice = buscarCodigo (cadastro, codigo, TAMANHO);
+                        
+                        if(indice == -1){
+                            System.out.println("codigo não encontrado");
+                            continue;
                         }
+                        System.out.println("Estoque do produto: "+cadastro[indice].getEstoque());
+                        /*if ( existe( prod )) {
+                            System.out.println("\n" + prod.getStatusEstoque());
+                        }*/
                     }
                     
                     case 0 -> System.out.println("\nEncerrando o programa...\n");
@@ -155,6 +225,19 @@ public class ExemploOOProdutosV2 {
             if ()
         }
     }*/
+    
+    private static int buscarCodigo(Produto[] cad,int cod, int TAMANHO){
+        int flag = 0;
+        int indice = 0;
+        for(indice = 0; indice < TAMANHO; indice++) {
+            if (cad[indice] != null && cad[indice].getCodigo() == cod) {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag == 0 ) return -1;
+        else return indice;
+    }
 
     private static boolean existe( Produto p ) {
         if ( p == null ) {
