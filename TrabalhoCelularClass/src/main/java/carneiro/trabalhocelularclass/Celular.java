@@ -83,23 +83,20 @@ Essa exibição serve para verificar se as operações anteriores estão sendo e
  
 */
 
-
 package carneiro.trabalhocelularclass;
 
 public class Celular {
 
-    // Atributos
     private String marca;
     private String modelo;
     private String cor;
-    private int nivelBateria; // em porcentagem
+    private int nivelBateria;
     private boolean ligado;
-    private int armazenamentoTotal; // em GB
-    private int armazenamentoDisponivel; // em GB
+    private int armazenamentoTotal; // GB
+    private int armazenamentoDisponivel; // GB
     private boolean wifiConectado;
-    private int resolucaoCamera; // em megapixels
+    private int resolucaoCamera; // megapixels
 
-    // Construtor
     public Celular(String marca, String modelo, String cor, int armazenamentoTotal, int resolucaoCamera) {
         this.marca = marca;
         this.modelo = modelo;
@@ -108,33 +105,31 @@ public class Celular {
         this.resolucaoCamera = resolucaoCamera;
         this.nivelBateria = 100;
         this.ligado = false;
-        this.armazenamentoDisponivel = (int)(armazenamentoTotal * 0.6); // 60% disponível
+        this.armazenamentoDisponivel = (int)(armazenamentoTotal * 0.6);
         this.wifiConectado = false;
     }
 
-    // Métodos (a serem implementados conforme os requisitos)
-
-    // B) Ligar o smartphone
+    // Ligar o celular
     public void ligar() {
         if (ligado) {
-            System.out.println("O smartphone já está ligado.");
+            System.out.println("O celular já está ligado.");
         } else {
             ligado = true;
-            System.out.println("Smartphone ligado com sucesso.");
+            System.out.println("celular ligado com sucesso.");
         }
     }
 
-    // B) Desligar o smartphone
+    // Desligar o celular
     public void desligar() {
         if (!ligado) {
-            System.out.println("O smartphone já está desligado.");
+            System.out.println("O celular já está desligado.");
         } else {
             ligado = false;
-            System.out.println("Smartphone desligado com sucesso.");
+            System.out.println("celular desligado com sucesso.");
         }
     }
 
-    // C) Carregar bateria
+    // Carregar bateria
     public void carregarBateria(int porcentagem) {
         nivelBateria += porcentagem;
         if (nivelBateria > 100) {
@@ -143,10 +138,10 @@ public class Celular {
         System.out.println("Bateria carregada. Nível atual: " + nivelBateria + "%");
     }
 
-    // D) Instalar aplicativo
+    // Instalar aplicativo
     public void instalarAplicativo(String nomeApp, int tamanhoApp) {
         if (!ligado) {
-            System.out.println("Não é possível instalar aplicativo. O smartphone está desligado.");
+            System.out.println("Não é possível instalar aplicativo. O celular está desligado.");
             return;
         }
         if (!wifiConectado) {
@@ -161,7 +156,7 @@ public class Celular {
         System.out.println("Aplicativo " + nomeApp + " instalado com sucesso. Espaço disponível: " + armazenamentoDisponivel + "GB");
     }
 
-    // E) Conectar Wi-Fi
+    // Conectar Wi-Fi
     public void conectarWifi() {
         if (wifiConectado) {
             System.out.println("O Wi-Fi já está conectado.");
@@ -171,7 +166,7 @@ public class Celular {
         }
     }
 
-    // E) Desconectar Wi-Fi
+    // Desconectar Wi-Fi
     public void desconectarWifi() {
         if (!wifiConectado) {
             System.out.println("O Wi-Fi já está desconectado.");
@@ -181,7 +176,7 @@ public class Celular {
         }
     }
 
-    // F) Assistir vídeo
+    // Assistir vídeo
     public void assistirVideo(int segundos) {
         int consumoBateria = segundos * 2;
         if (nivelBateria - consumoBateria < 10) {
@@ -192,9 +187,9 @@ public class Celular {
         System.out.println("Vídeo reproduzido por " + segundos + " segundos. Bateria restante: " + nivelBateria + "%");
     }
 
-    // G) Exibir informações
+    // Exibir informações
     public void exibirInformacoes() {
-        System.out.println("\n=== Informações do Smartphone ===");
+        System.out.println("\n=== Informações do celular ===");
         System.out.println("Marca: " + marca);
         System.out.println("Modelo: " + modelo);
         System.out.println("Cor: " + cor);
@@ -207,7 +202,7 @@ public class Celular {
         System.out.println("================================\n");
     }
 
-    // Getters e Setters (para acesso controlado aos atributos)
+    // Get e Set
     public String getMarca() {
         return marca;
     }
