@@ -92,10 +92,10 @@ public class Celular {
     private String cor;
     private int nivelBateria;
     private boolean ligado;
-    private int armazenamentoTotal; // GB
-    private int armazenamentoDisponivel; // GB
+    private int armazenamentoTotal;
+    private int armazenamentoDisponivel;
     private boolean wifiConectado;
-    private int resolucaoCamera; // megapixels
+    private int resolucaoCamera;
 
     public Celular(String marca, String modelo, String cor, int armazenamentoTotal, int resolucaoCamera) {
         this.marca = marca;
@@ -109,100 +109,102 @@ public class Celular {
         this.wifiConectado = false;
     }
 
-    // Ligar o celular
+    // ligar o celular
     public void ligar() {
         if (ligado) {
-            System.out.println("O celular já está ligado.");
+            System.out.println("o celular já está ligado");
         } else {
             ligado = true;
-            System.out.println("celular ligado com sucesso.");
+            System.out.println("celular ligado com sucesso");
         }
     }
 
-    // Desligar o celular
+    // desligar
     public void desligar() {
         if (!ligado) {
-            System.out.println("O celular já está desligado.");
+            System.out.println("o celular já está desligado");
         } else {
             ligado = false;
-            System.out.println("celular desligado com sucesso.");
+            System.out.println("celular desligado com sucesso");
         }
     }
 
-    // Carregar bateria
+    // carregador
     public void carregarBateria(int porcentagem) {
         nivelBateria += porcentagem;
         if (nivelBateria > 100) {
             nivelBateria = 100;
         }
-        System.out.println("Bateria carregada. Nível atual: " + nivelBateria + "%");
+        System.out.println("bateria carregada. Nível atual: " + nivelBateria + "%");
     }
 
-    // Instalar aplicativo
+    // baixar aplicativo
     public void instalarAplicativo(String nomeApp, int tamanhoApp) {
         if (!ligado) {
-            System.out.println("Não é possível instalar aplicativo. O celular está desligado.");
+            System.out.println("não é possível instalar aplicativo. O celular está desligado.");
             return;
         }
         if (!wifiConectado) {
-            System.out.println("Não é possível instalar aplicativo. Conecte-se ao Wi-Fi primeiro.");
+            System.out.println("não é possível instalar aplicativo. Conecte-se ao Wi-Fi primeiro.");
             return;
         }
         if (tamanhoApp > armazenamentoDisponivel) {
-            System.out.println("Espaço insuficiente para instalar " + nomeApp + ". Disponível: " + armazenamentoDisponivel + "GB, Necessário: " + tamanhoApp + "GB");
+            System.out.println("espaço insuficiente para instalar o aplicativo");
             return;
         }
         armazenamentoDisponivel -= tamanhoApp;
-        System.out.println("Aplicativo " + nomeApp + " instalado com sucesso. Espaço disponível: " + armazenamentoDisponivel + "GB");
+        System.out.println("aplicativo " + nomeApp + " instalado");
     }
 
-    // Conectar Wi-Fi
+    // conectar Wi-Fi
     public void conectarWifi() {
         if (wifiConectado) {
-            System.out.println("O Wi-Fi já está conectado.");
+            System.out.println("o wi-fi já está conectado");
         } else {
             wifiConectado = true;
-            System.out.println("Wi-Fi conectado com sucesso.");
+            System.out.println("wi-fi conectado");
         }
     }
 
-    // Desconectar Wi-Fi
+    // desconectar Wi-Fi
     public void desconectarWifi() {
         if (!wifiConectado) {
-            System.out.println("O Wi-Fi já está desconectado.");
+            System.out.println("o wi-fi já está desconectado");
         } else {
             wifiConectado = false;
-            System.out.println("Wi-Fi desconectado com sucesso.");
+            System.out.println("wi-fi desconectado");
         }
     }
 
-    // Assistir vídeo
+    // assistir vídeo
     public void assistirVideo(int segundos) {
         int consumoBateria = segundos * 2;
         if (nivelBateria - consumoBateria < 10) {
-            System.out.println("Bateria insuficiente para reproduzir o vídeo. Nível atual: " + nivelBateria + "%");
+            System.out.println("bateria insuficiente para reproduzir o vídeo. Nível atual: " + nivelBateria + "%");
             return;
         }
         nivelBateria -= consumoBateria;
-        System.out.println("Vídeo reproduzido por " + segundos + " segundos. Bateria restante: " + nivelBateria + "%");
+        System.out.println("vídeo reproduzido por " + segundos + " segundos. Bateria restante: " + nivelBateria + "%");
     }
 
-    // Exibir informações
+    // exibir informações
     public void exibirInformacoes() {
-        System.out.println("\n=== Informações do celular ===");
-        System.out.println("Marca: " + marca);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Cor: " + cor);
-        System.out.println("Resolução da Câmera: " + resolucaoCamera + " MP");
-        System.out.println("Nível de Bateria: " + nivelBateria + "%");
-        System.out.println("Estado: " + (ligado ? "Ligado" : "Desligado"));
-        System.out.println("Armazenamento Total: " + armazenamentoTotal + " GB");
-        System.out.println("Armazenamento Disponível: " + armazenamentoDisponivel + " GB");
-        System.out.println("Wi-Fi: " + (wifiConectado ? "Conectado" : "Desconectado"));
-        System.out.println("================================\n");
+        System.out.println("informações do celular");
+        System.out.println("marca: " + marca);
+        System.out.println("modelo: " + modelo);
+        System.out.println("cor: " + cor);
+        System.out.println("resolução da câmera: " + resolucaoCamera + "MP");
+        System.out.println("nível de bateria: " + nivelBateria + "%");
+        if (ligado) System.out.println("estado: ligado");
+        else System.out.println("estado: desligado");
+        System.out.println("armazenamento total: " + armazenamentoTotal + "GB");
+        System.out.println("armazenamento disponível: " + armazenamentoDisponivel + " GB");
+        if (wifiConectado) System.out.println("wi-fi: conectado");
+        else System.out.println("wi-fi: desconectado");
+        
     }
 
-    // Get e Set
+    // get e set
     public String getMarca() {
         return marca;
     }
